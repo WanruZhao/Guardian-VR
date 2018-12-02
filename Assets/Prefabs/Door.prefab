@@ -234,7 +234,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2277423, y: 1.6501293, z: 2.901125}
+  m_Size: {x: 1.5, y: 1.6501293, z: 2.901125}
   m_Center: {x: -0.0000002644956, y: 0.0000006854534, z: 0.00000071525545}
 --- !u!65 &65682721220698376
 BoxCollider:
@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb1decd1ad267648809c084feb71c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeEffectPrefab: {fileID: 1000012560919920, guid: c3407e09a31736f4b870aba13f952fbf,
+  smokeEffectPrefab: {fileID: 1000012560919920, guid: 85a8865d1bf4a63478038fae23776de8,
     type: 2}
-  explosionEffectPrefab: {fileID: 1000013462590818, guid: 607d9f691cfeda04994631279f270cc0,
+  explosionEffectPrefab: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 2}
   flameEffectPrefab: {fileID: 1000010823978654, guid: 3228a22491941734bb83ad691d17fcb9,
     type: 2}
