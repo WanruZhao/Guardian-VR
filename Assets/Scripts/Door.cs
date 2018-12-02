@@ -6,6 +6,8 @@ using UnityEngine;
 public class Door : MonoBehaviour {
     private static int maxHealth = 100;
     private static int attackDamage = 10;
+    private static Color initColor = new Color(0.1f, 0.0f, 0.0f, 1.0f);
+
 
     private int health = Door.maxHealth;
     private GameObject healthText;
@@ -22,12 +24,12 @@ public class Door : MonoBehaviour {
     void Start () {
         this.healthText = this.transform.GetChild(0).gameObject;
         this.DisplayHealth();
-	}
+        this.UpdateColor();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        this.DisplayHealth();
-        Debug.Log("health" + this.health);
+        //this.DisplayHealth();
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -44,6 +46,8 @@ public class Door : MonoBehaviour {
         }
         this.health -= Door.attackDamage;
         this.DisplayHealth();
+        this.UpdateColor();
+
         if (this.health <= 0) {
             this.DestroyDoor();
         }
@@ -53,6 +57,7 @@ public class Door : MonoBehaviour {
     public void AddHealth(int health) {
         this.health += health;
         this.DisplayHealth();
+        this.UpdateColor();
         if (this.health >= Door.maxHealth)
         {
             Destroy(this.smokeEffect);
@@ -71,11 +76,22 @@ public class Door : MonoBehaviour {
     void DisplayHealth() {
         this.healthText.GetComponent<TMPro.TextMeshPro>().text = "Health: " + this.health;
 
-        if (this.health < Door.maxHealth * 0.3) {
+        if (this.health < Door.maxHealth * 0.4) {
             this.healthText.GetComponent<TMPro.TextMeshPro>().color = new Color32(255, 0, 0, 255);
         } else {
             this.healthText.GetComponent<TMPro.TextMeshPro>().color = new Color32(255, 255, 255, 255);
         }
 
+    }
+
+    void UpdateColor() {
+        if (this.health > Door.maxHealth) {
+            return;
+        }
+        float factor = 1.0f - (float)this.health / (float)Door.maxHealth;
+        Debug.Log("factor:" + factor);
+        Color color = new Color(Door.initColor.r + factor, Door.initColor.g, Door.initColor.b, 1.0f);
+        Renderer rend = this.GetComponent<Renderer>();
+        rend.material.SetColor("_Color", color);
     }
 }
